@@ -1,0 +1,63 @@
+﻿@page
+@model RazorPizzeria.Pages.OrdersModel
+@{
+}
+<h3>Orders</h3>
+
+<hr/>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Order Date
+            </th>
+            <th>
+                Pizza Name
+            </th>
+            <th>
+                Ingredients
+            </th>
+            <th>
+                Price
+            </th>
+        </tr> 
+    </thead>
+   
+    <tbody>
+        @foreach (var order in Model.pizzaOrders)
+        {
+            <tr>
+                <td>
+                    @order.Id
+                </td>
+                <td>
+                    @order.Date
+                </td>
+                 
+                <td>
+                    @order.PizzaName
+                </td>
+                <td>
+                    @{  string ingredients = "";
+                        if (order.TomatoSauce) ingredients += "TomatoSauce ";
+                        if (order.Cheese)      ingredients += "Cheese ";
+                        if (order.Pepperoni)   ingredients += "Pepperoni ";
+                        if (order.Mushroom)    ingredients += "Mushroom ";
+                        if (order.Tuna)        ingredients += "Tuna ";
+                        if (order.Pineapple)   ingredients += "Pineapple ";
+                        if (order.Beef)        ingredients += "Beef ";
+                        if (order.Chicken)     ingredients += "Chicken ";}
+                    @ingredients
+                </td>
+                <td>
+                    @order.FinalPrice
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

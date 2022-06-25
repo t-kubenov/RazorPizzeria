@@ -1,0 +1,61 @@
+﻿@page
+@model RazorPizzeria.Pages.PizzaModel
+@using RazorPizzeria.Models
+@{
+}
+<div class="text-center">
+    <div class="mainText">
+        <h1 class="display-4 text-capitalize text-black">Razor Sharp Pizzas</h1>
+        <h4 class="mainSubTitle">Try our pizzas or order a Custom Pizza!</h4>
+        <h4 class="mainSubTitle">No need to give your details, we already know everything!</h4>
+        <h4 class="mainSubTitle" style="color:red">We are coming after you.</h4>
+        <p class="smallText"><i>One pizza per order only.</i></p>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-5 mt-5">
+                <div class="w-100 row customPizzaDiv">
+                    <div class="col-4">
+                        <img src="~/images/Pizzas/Create.png" class="w-100"/>
+                    </div>
+
+                    <div class="col-8 align-items-center">
+                        <div class="align-middle customPizzaText">
+                            <h3 style="text-align: left;">Create Your Own Pizza!</h3>
+                            <h5 style="text-align: left;">Try our brand new Custom Pizza Maker!</h5>
+                            <a style="float: left;" class="btn btn-primary" asp-area="" asp-page="/Forms/CustomPizza">Try Now</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+                @foreach (var pizzer in @Model.fakePizzaDB)
+                {
+                    var imagePath = "~/images/Pizzas/" + pizzer.ImageTitle + ".png";
+                    <div class="col-4 mb-5">
+                        <a class="pizzaImg" style="color:inherit;text-decoration:none;" asp-area="" asp-page="/Checkout/Checkout" 
+                        asp-route-PizzaName="@pizzer.PizzaName" 
+                        asp-route-ImageTitle="@pizzer.ImageTitle" 
+                        asp-route-TomatoSauce="@pizzer.TomatoSauce"
+                        asp-route-Cheese    ="@pizzer.Cheese"
+                        asp-route-Pepperoni ="@pizzer.Pepperoni"
+                        asp-route-Mushroom  ="@pizzer.Mushroom"
+                        asp-route-Tuna      ="@pizzer.Tuna"
+                        asp-route-Pineapple ="@pizzer.Pineapple"
+                        asp-route-Beef      ="@pizzer.Beef"
+                        asp-route-Chicken   ="@pizzer.Chicken"
+                        asp-route-FinalPrice="@pizzer.FinalPrice">
+                            <img src="@imagePath" class="w-100" asp-append-version="true"/>
+                            <p>@pizzer.PizzaName</p>
+                        </a> 
+                    </div>
+                }
+        </div>
+    </div>
+
+
+
+</div>
+
